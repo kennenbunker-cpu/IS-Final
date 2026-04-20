@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>✨ Shoppy World ✨</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #fce4ec 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: Georgia, serif;
+      gap: 14px;
+    }
+
+    h1 {
+      color: #c2185b;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 0 #f48fb1;
+    }
+
+    #gameContainer {
+      position: relative;
+      display: inline-block;
+    }
+
+    canvas {
+      display: block;
+      border: 3px solid #f48fb1;
+      border-radius: 20px;
+      box-shadow: 0 6px 32px rgba(244, 143, 177, 0.4);
+      cursor: default;
+    }
+
+    #overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(252, 228, 236, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+    }
+
+    #dialog {
+      background: #fff0f5;
+      border: 2.5px solid #f48fb1;
+      border-radius: 22px;
+      padding: 28px 36px 22px;
+      min-width: 290px;
+      max-width: 340px;
+      box-shadow: 0 10px 40px rgba(233, 30, 140, 0.2);
+      text-align: center;
+    }
+
+    #storeEmoji { font-size: 2.8rem; line-height: 1; margin-bottom: 6px; }
+
+    #storeName {
+      color: #c2185b;
+      font-size: 1.35rem;
+      margin-bottom: 14px;
+    }
+
+    .item-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 8px 0;
+      padding: 9px 14px;
+      background: #fce4ec;
+      border-radius: 12px;
+    }
+
+    .item-name { color: #880e4f; font-size: 0.92rem; flex: 1; text-align: left; }
+    .item-price { color: #c2185b; font-weight: bold; font-size: 0.9rem; white-space: nowrap; }
+
+    .buy-btn {
+      background: #f48fb1;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 5px 13px;
+      cursor: pointer;
+      font-size: 0.83rem;
+      font-family: inherit;
+      font-weight: bold;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .buy-btn:hover:not(:disabled) { background: #e91e8c; }
+    .buy-btn:disabled { background: #ddd; color: #aaa; cursor: not-allowed; }
+
+    #dialogMessage {
+      color: #e91e8c;
+      font-size: 0.85rem;
+      min-height: 22px;
+      margin-top: 10px;
+    }
+
+    #closeBtn {
+      margin-top: 12px;
+      background: white;
+      color: #c2185b;
+      border: 2px solid #f48fb1;
+      border-radius: 12px;
+      padding: 8px 24px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-family: inherit;
+      transition: background 0.15s;
+    }
+    #closeBtn:hover { background: #fce4ec; }
+
+    #controls {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    #moneyPanel {
+      background: white;
+      border: 2px solid #f48fb1;
+      border-radius: 12px;
+      padding: 8px 18px;
+      color: #c2185b;
+      font-size: 1rem;
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(244, 143, 177, 0.25);
+    }
+
+    #restartBtn {
+      background: #e91e8c;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 9px 22px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-family: inherit;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      box-shadow: 0 3px 10px rgba(233, 30, 140, 0.35);
+      transition: background 0.15s;
+    }
+    #restartBtn:hover { background: #c2185b; }
+
+    #statusLine {
+      color: #c2185b;
+      font-size: 0.85rem;
+      min-height: 20px;
+      font-style: italic;
+      letter-spacing: 0.3px;
+    }
+  </style>
+</head>
+<body>
+  <h1>✨ Shoppy World ✨</h1>
+
+  <div id="gameContainer">
+    <canvas id="gameCanvas" width="800" height="800"></canvas>
+    <div id="overlay">
+      <div id="dialog">
+        <div id="storeEmoji"></div>
+        <h2 id="storeName"></h2>
+        <div id="itemList"></div>
+        <div id="dialogMessage"></div>
+        <button id="closeBtn">Close Shop 💕</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="controls">
+    <div id="moneyPanel">💰 $<span id="moneyAmt">800</span></div>
+    <button id="restartBtn">✨ Restart</button>
+  </div>
+
+  <div id="statusLine">&nbsp;</div>
+
+  <script src="game.js"></script>
+</body>
+</html>
